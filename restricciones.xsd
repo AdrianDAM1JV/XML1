@@ -1,0 +1,105 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+<!-- restriccion del dni-->
+<xs:simpleType name="dniType">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="[0-9]{8}[A-Z]"></xs:pattern>
+    </xs:restriction>
+</xs:simpleType>
+<!-- restriccion de la calle-->
+<xs:simpleType name="viaType">
+    <xs:restriction base="xs:string">
+        <xs:enumeration value="Via"></xs:enumeration>
+        <xs:enumeration value="Calle"></xs:enumeration>
+        <xs:enumeration value="Avenida"></xs:enumeration>
+    </xs:restriction>
+</xs:simpleType>
+<!-- restriccion de telefono-->
+<xs:simpleType name="telfType">
+    <xs:restriction base="xs:integer">
+        <xs:pattern value="[0-9]{9}"></xs:pattern>
+    </xs:restriction>
+</xs:simpleType>
+<!-- precio type-->
+<xs:simpleType name="precioType">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="[0-9]{2}[€]"></xs:pattern>
+    </xs:restriction>
+</xs:simpleType>
+<!-- Restriccion de numRef-->
+<xs:simpleType name="refType">
+    <xs:restriction base="xs:string">
+        <xs:pattern value="[0-9]{5}[-][A-Z]"></xs:pattern>
+    </xs:restriction>
+</xs:simpleType>
+<!-- aquí empieza la xsd-->
+<xs:element name="Datos">
+        <xs:complexType>
+            <xs:sequence>
+                <!-- Aquí van los datos personales-->
+                <xs:element name ="datosPersonales">
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="nombre" type="xs:string"></xs:element>
+                            <xs:element name="apellidos">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <!-- Apellidos del cliente-->
+                                        <xs:element name="apellido1" type="xs:string"></xs:element>
+                                        <xs:element name="apellido2" type="xs:string"></xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="dni" type="dniType"></xs:element>
+                            <xs:element name="direccion">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <!-- Calle, via o avenida-->
+                                        <xs:element name="via" type="viaType"></xs:element>
+                                        <!-- Nombre de la calle via o avenida-->
+                                        <xs:element name="nombre" type="xs:string"></xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="puerta" use="required"></xs:attribute>
+                                    <xs:attribute name="piso"></xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                            <xs:element name="telfs">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <!-- teléfonos-->
+                                        <xs:element name="telf1">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="num" type="telfType"></xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="tipo" use="required"></xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                        <xs:element name="telf2">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="num" type="telfType"></xs:element>
+                                                </xs:sequence>
+                                                <xs:attribute name="tipo" use="required"></xs:attribute>
+                                            </xs:complexType>
+                                        </xs:element>
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+                            <!-- datos del paquete-->
+                            <xs:element name="datosPaquete">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="numref" type="refType"></xs:element>
+                                        <xs:element name="peso" type="xs:double"></xs:element>
+                                        <xs:element name="precio" type="precioType"></xs:element>
+                                    </xs:sequence>
+                                    <xs:attribute name="prioridad" use="required"></xs:attribute>
+                                </xs:complexType>
+                            </xs:element>
+                        </xs:sequence>
+                    </xs:complexType>
+                </xs:element>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+</xs:schema>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-model href="restricciones.xsd" type="application/xml" schematypens="http://www.w3.org/2001/XMLSchema"?>
+<Datos>
+    <datosPersonales>
+        <nombre>Jose Antonio</nombre>
+        <apellidos>
+            <apellido1>Perez</apellido1>
+            <apellido2>Perez</apellido2>
+        </apellidos>
+        <dni>56723145J</dni>
+        <direccion puerta="D" piso="3">
+            <via>Calle</via>
+            <nombre>C/Georgeyy</nombre>
+        </direccion>
+        <telfs>
+            <telf1 tipo="fijo">
+                <num>992654210</num>
+            </telf1>
+            <telf2 tipo="movil">
+                <num>622345612</num>
+            </telf2>
+        </telfs>
+        <datosPaquete prioridad="Express">
+            <numref>95432-S</numref>
+            <peso>20.0</peso>
+            <precio>40€</precio>
+        </datosPaquete>
+    </datosPersonales>
+</Datos>
